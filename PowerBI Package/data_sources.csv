@@ -1,0 +1,9 @@
+Source Name,Owner,Format,Update Frequency,Last Updated,Completeness Score,Status,Issues / Notes
+Salesforce CRM,Regional Data Office,CSV Export,Daily,2026-05-17,95,Ready,"Standardized fields, automated refresh in place."
+Survey Monkey Export,Program Manager,API (JSON),Weekly,2026-05-24,74,Needs Cleanup,Inconsistent KPI definitions; dedupe required.
+Excel Workbook,Regional Data Office,Google Sheet,Ad hoc / Manual,2026-05-17,72,Manual Update,Emailed monthly; no automated pipeline yet.
+Smartsheet,IT / Systems,Database table,Daily,2026-05-19,52,Integration Needed,No connector; candidate for API integration.
+Airtable Base,IT / Systems,CSV Export,Daily,2026-05-21,99,Ready,"Standardized fields, automated refresh in place."
+Google Form,Grants Office,PDF / Manual entry,Monthly,2026-05-11,63,Needs Cleanup,Inconsistent KPI definitions; dedupe required.
+Internal Database,Partner Org Admin,API (JSON),Real-time API,2026-05-25,79,Manual Update,Emailed monthly; no automated pipeline yet.
+Grant Mgmt System,Partner Org Admin,PDF / Manual entry,Quarterly,2026-05-19,56,Integration Needed,No connector; candidate for API integration.

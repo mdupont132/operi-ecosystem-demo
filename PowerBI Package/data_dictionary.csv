@@ -1,0 +1,12 @@
+Metric Name,Definition,Source,Calculation Logic,Refresh Frequency
+Businesses Supported,Distinct businesses receiving any service in the period.,Partner CRMs,COUNT DISTINCT business where service flag = true,Monthly
+New Businesses Started,Businesses formally launched (registered) after support.,State registry + partner intake,SUM new-formation flag,Monthly
+Jobs Created,Net new FTE positions attributed to supported businesses.,Partner surveys,SUM reported new FTE,Quarterly
+Jobs Retained,Existing FTE positions preserved through support.,Partner surveys,SUM retained FTE,Quarterly
+Capital Raised,Total external capital secured by supported entrepreneurs.,Funding partners,SUM capital events,Monthly
+Grants Awarded,Non-dilutive grant funding awarded.,Grant Mgmt System,SUM grant amounts,Monthly
+Loans Facilitated,Loan capital facilitated via partners / CDFIs.,Lending partners,SUM loan principal,Monthly
+Referrals Made,Warm referrals between ecosystem organizations.,Partner CRMs,COUNT referral records,Monthly
+Entrepreneurs Served,Unique individuals receiving support.,Partner intake,COUNT DISTINCT entrepreneur,Monthly
+Mentor Hours,Logged 1:1 / group mentorship hours.,Scheduling tools,SUM session hours,Monthly
+Data Completeness Score,% of required KPI fields populated per source.,Operi data audit,filled fields / required fields,On refresh

@@ -1,0 +1,52 @@
+{
+  "name": "Operi Ecosystem Intelligence",
+  "dataColors": ["#00B7FF","#22D3EE","#7C3AED","#38BDF8","#60A5FA","#818CF8","#2DD4BF","#A78BFA","#0EA5E9","#22C55E","#F59E0B","#EF4444"],
+  "background": "#07111F",
+  "foreground": "#F8FAFC",
+  "foregroundNeutralSecondary": "#94A3B8",
+  "tableAccent": "#00B7FF",
+  "good": "#22C55E",
+  "neutral": "#F59E0B",
+  "bad": "#EF4444",
+  "maximum": "#00B7FF",
+  "center": "#7C3AED",
+  "minimum": "#0D1B2A",
+  "null": "#1B2A40",
+  "textClasses": {
+    "title":    { "color": "#F8FAFC", "fontFace": "Segoe UI Semibold", "fontSize": 13 },
+    "header":   { "color": "#F8FAFC", "fontFace": "Segoe UI Semibold", "fontSize": 12 },
+    "label":    { "color": "#94A3B8", "fontFace": "Segoe UI", "fontSize": 10 },
+    "callout":  { "color": "#FFFFFF", "fontFace": "Segoe UI Semibold", "fontSize": 28 }
+  },
+  "visualStyles": {
+    "*": {
+      "*": {
+        "background": [{ "show": true, "color": { "solid": { "color": "#0D1B2A" } }, "transparency": 0 }],
+        "border":     [{ "show": true, "color": { "solid": { "color": "#1B2A40" } }, "radius": 12 }],
+        "visualHeader": [{ "show": true, "background": { "solid": { "color": "#0D1B2A" } }, "foreground": { "solid": { "color": "#94A3B8" } } }],
+        "title":      [{ "show": true, "fontColor": { "solid": { "color": "#F8FAFC" } }, "fontSize": 12, "fontFamily": "Segoe UI Semibold", "alignment": "left" }],
+        "labels":     [{ "color": { "solid": { "color": "#CBD5E1" } } }],
+        "categoryAxis":[{ "color": { "solid": { "color": "#94A3B8" } }, "gridlineColor": { "solid": { "color": "#16263B" } }, "gridlineShow": true }],
+        "valueAxis":  [{ "color": { "solid": { "color": "#94A3B8" } }, "gridlineColor": { "solid": { "color": "#16263B" } } }],
+        "legend":     [{ "labelColor": { "solid": { "color": "#94A3B8" } }, "fontSize": 9 }]
+      }
+    },
+    "page": {
+      "*": { "background": [{ "color": { "solid": { "color": "#07111F" } }, "transparency": 0 }] }
+    },
+    "card": {
+      "*": {
+        "background": [{ "show": true, "color": { "solid": { "color": "#0D1B2A" } } }],
+        "labels": [{ "color": { "solid": { "color": "#FFFFFF" } }, "fontSize": 26, "fontFamily": "Segoe UI Semibold" }],
+        "categoryLabels": [{ "color": { "solid": { "color": "#94A3B8" } }, "fontSize": 10 }]
+      }
+    },
+    "slicer": {
+      "*": {
+        "background": [{ "show": true, "color": { "solid": { "color": "#0D1B2A" } } }],
+        "items": [{ "fontColor": { "solid": { "color": "#CBD5E1" } }, "background": { "solid": { "color": "#0D1B2A" } } }],
+        "header": [{ "fontColor": { "solid": { "color": "#00B7FF" } } }]
+      }
+    }
+  }
+}

@@ -1,0 +1,84 @@
+/* =====================================================================
+   OPERI · KC ENTREPRENEURIAL ECOSYSTEM INTELLIGENCE PLATFORM
+   DAX Measure Library  —  paste each measure into Power BI Desktop
+   (Modeling tab > New Measure). Assumes the imported fact table is
+   named  Fact_Ecosystem_Monthly  and a Date table named  DimDate.
+   ===================================================================== */
+
+/* ---------- CORE OUTCOME MEASURES ---------- */
+Businesses Supported   = SUM ( Fact_Ecosystem_Monthly[Businesses Supported] )
+New Businesses Started = SUM ( Fact_Ecosystem_Monthly[New Businesses Started] )
+Jobs Created           = SUM ( Fact_Ecosystem_Monthly[Jobs Created] )
+Jobs Retained          = SUM ( Fact_Ecosystem_Monthly[Jobs Retained] )
+Capital Raised         = SUM ( Fact_Ecosystem_Monthly[Capital Raised] )
+Grants Awarded         = SUM ( Fact_Ecosystem_Monthly[Grants Awarded] )
+Loans Facilitated      = SUM ( Fact_Ecosystem_Monthly[Loans Facilitated] )
+Referrals Made         = SUM ( Fact_Ecosystem_Monthly[Referrals Made] )
+Programs Delivered     = SUM ( Fact_Ecosystem_Monthly[Programs Delivered] )
+Entrepreneurs Served   = SUM ( Fact_Ecosystem_Monthly[Entrepreneurs Served] )
+Mentor Hours           = SUM ( Fact_Ecosystem_Monthly[Mentor Hours] )
+
+/* ---------- PARTNER / SOURCE COUNTS ---------- */
+Active Partner Orgs = DISTINCTCOUNT ( Fact_Ecosystem_Monthly[Organization Name] )
+Total Data Sources  = DISTINCTCOUNT ( Fact_Ecosystem_Monthly[Data Source] )
+
+/* ---------- RATES & EFFICIENCY ---------- */
+Support to Start Rate =
+DIVIDE ( [New Businesses Started], [Businesses Supported] )
+
+Avg Capital per Business =
+DIVIDE ( [Capital Raised], [New Businesses Started] )
+
+Capital Raised ($M) = DIVIDE ( [Capital Raised], 1000000 )
+
+Avg Data Completeness =
+AVERAGEX (
+    VALUES ( Fact_Ecosystem_Monthly[Organization Name] ),
+    CALCULATE ( MAX ( Fact_Ecosystem_Monthly[Data Completeness Score] ) )
+)
+
+/* ---------- TIME INTELLIGENCE (requires DimDate, marked as Date table) ---------- */
+Capital Raised PM =
+CALCULATE ( [Capital Raised], DATEADD ( DimDate[Date], -1, MONTH ) )
+
+Capital MoM % =
+DIVIDE ( [Capital Raised] - [Capital Raised PM], [Capital Raised PM] )
+
+Businesses Started 6M =
+CALCULATE ( [New Businesses Started],
+    DATESINPERIOD ( DimDate[Date], MAX ( DimDate[Date] ), -6, MONTH ) )
+
+Businesses Started Prior 6M =
+CALCULATE ( [New Businesses Started],
+    DATESINPERIOD ( DimDate[Date], MAX ( DimDate[Date] ), -12, MONTH ) ) - [Businesses Started 6M]
+
+Businesses Started 6M Trend % =
+DIVIDE ( [Businesses Started 6M] - [Businesses Started Prior 6M], [Businesses Started Prior 6M] )
+
+/* ---------- ENTREPRENEUR JOURNEY FUNNEL (modeled conversion stages) ----------
+   Stage ratios are illustrative model assumptions for the concept and can be
+   replaced with measured stage data once partner intake feeds are integrated. */
+Stage 1 Entered Ecosystem      = [Entrepreneurs Served]
+Stage 2 Received Referral      = ROUND ( [Entrepreneurs Served] * 0.74, 0 )
+Stage 3 Technical Assistance   = ROUND ( [Entrepreneurs Served] * 0.55, 0 )
+Stage 4 Funding Support        = ROUND ( [Entrepreneurs Served] * 0.31, 0 )
+Stage 5 Started Business       = [New Businesses Started]
+Stage 6 Created Jobs           = ROUND ( [New Businesses Started] * 0.62, 0 )
+
+Funding Conversion Rate =
+DIVIDE ( [Stage 4 Funding Support], [Stage 3 Technical Assistance] )
+
+Start Conversion Rate =
+DIVIDE ( [Stage 5 Started Business], [Stage 4 Funding Support] )
+
+/* ---------- CALCULATED DATE TABLE (New Table) ---------- */
+DimDate =
+ADDCOLUMNS (
+    CALENDAR ( DATE ( 2024, 6, 1 ), DATE ( 2026, 5, 31 ) ),
+    "Year", YEAR ( [Date] ),
+    "Month No", MONTH ( [Date] ),
+    "Month", FORMAT ( [Date], "YYYY-MM" ),
+    "Month Name", FORMAT ( [Date], "MMM YYYY" )
+)
+/* Then: relate DimDate[Month] to Fact_Ecosystem_Monthly[Reporting Month],
+   and Model view > DimDate > Mark as date table > [Date]. */

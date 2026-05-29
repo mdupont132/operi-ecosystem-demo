@@ -1,0 +1,14 @@
+{
+  "version": "0.1",
+  "connections": [
+    {
+      "details": {
+        "protocol": "folder",
+        "address": {
+          "path": "C:\\Users\\megan\\OneDrive\\Desktop\\OPERI\\Bid Contracts\\UNI MO 5.29.26\\Operi Ecosystem Dashboard Concept\\PowerBI Package"
+        }
+      },
+      "mode": "Import"
+    }
+  ]
+}
